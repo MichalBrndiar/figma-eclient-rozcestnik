@@ -24,6 +24,10 @@ export default function App() {
   if (page === 'cenik') return <CenikPage />
 
   const isMono = layout === 'mono'
+  const appBarBg   = isMono ? 'rgba(216,242,248,0.88)' : 'rgba(243,238,249,0.88)'
+  const appBarBdr  = isMono ? 'rgba(20,132,168,0.10)'  : 'rgba(103,80,164,0.09)'
+  const logoBg     = isMono ? 'linear-gradient(135deg, #1484A8 0%, #2CB4D2 100%)' : 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)'
+  const logoShadow = isMono ? 'rgba(20,132,168,0.35)' : 'rgba(123,104,200,0.35)'
 
   return (
     <Box sx={{
@@ -35,14 +39,14 @@ export default function App() {
       <AppBar
         position="sticky"
         elevation={0}
-        sx={{ background: 'rgba(243,238,249,0.88)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(103,80,164,0.09)' }}
+        sx={{ background: appBarBg, backdropFilter: 'blur(14px)', borderBottom: `1px solid ${appBarBdr}` }}
       >
         <Toolbar sx={{ gap: 1.5 }}>
           <Box sx={{
             width: 36, height: 36, borderRadius: '12px',
-            background: 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
+            background: logoBg,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(123,104,200,0.35)',
+            boxShadow: `0 2px 8px ${logoShadow}`,
           }}>
             <Typography sx={{ color: '#fff', fontWeight: 800, fontSize: 16, lineHeight: 1 }}>e</Typography>
           </Box>

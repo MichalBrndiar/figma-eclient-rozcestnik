@@ -46,10 +46,14 @@ export default function LayoutSwitcher() {
               cursor: 'pointer',
               transition: 'all 0.18s ease',
               background: current === key
-                ? 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)'
+                ? (current === 'mono'
+                    ? 'linear-gradient(135deg, #1484A8 0%, #2CB4D2 100%)'
+                    : 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)')
                 : 'rgba(255,255,255,0.85)',
               boxShadow: current === key
-                ? '0 4px 16px rgba(123,104,200,0.40)'
+                ? (current === 'mono'
+                    ? '0 4px 16px rgba(20,132,168,0.40)'
+                    : '0 4px 16px rgba(123,104,200,0.40)')
                 : '0 2px 10px rgba(0,0,0,0.12)',
               backdropFilter: 'blur(8px)',
               '&:hover': {
