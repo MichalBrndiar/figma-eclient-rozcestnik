@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import {
   AppBar, Box, Chip, Container, IconButton,
   Stack, Toolbar, Typography, Card, Grid, Button, Badge,
@@ -6,6 +6,7 @@ import {
 import { ArrowBack, ShoppingCart } from '@mui/icons-material'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
+import { getLayout } from '../useLayout'
 
 interface Item {
   id: string
@@ -32,12 +33,48 @@ const ITEMS: Item[] = [
 
 const CATEGORIES = ['Vše', ...Array.from(new Set(ITEMS.map(i => i.category)))]
 
-const CAT_COLOR: Record<string, string> = {
+// výchozí (pestré) barvy kategorií
+const CAT_COLOR_DEFAULT: Record<string, string> = {
   Nápoje:    '#4A7EC0',
   Pochutiny: '#C8784A',
   Hygiena:   '#3A9E80',
   Zdraví:    '#B85C8A',
   Zábava:    '#D4A940',
+}
+
+// mono (aqua) barvy kategorií – stále rozlišitelné, vše v aqua/teal rodině
+const CAT_COLOR_MONO: Record<string, string> = {
+  Nápoje:    '#0B7CA8',
+  Pochutiny: '#1A9EBC',
+  Hygiena:   '#2ABACC',
+  Zdraví:    '#0E8EA0',
+  Zábava:    '#38C8E0',
+}
+
+// téma UI chrome
+const THEME = {
+  default: {
+    bg:          'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)',
+    appBarBg:    'rgba(243,238,249,0.88)',
+    appBarBdr:   'rgba(103,80,164,0.09)',
+    logoBg:      'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
+    logoShadow:  'rgba(74,126,192,0.35)',
+    cartColor:   '#6750A4',
+    allChipBg:   'linear-gradient(135deg, #7B68C8, #9D8FDC)',
+    orderBtn:    'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
+    orderShadow: 'rgba(74,126,192,0.50)',
+  },
+  mono: {
+    bg:          'linear-gradient(160deg, #D8F2F8 0%, #C8EAF5 100%)',
+    appBarBg:    'rgba(216,242,248,0.88)',
+    appBarBdr:   'rgba(20,132,168,0.10)',
+    logoBg:      'linear-gradient(135deg, #1484A8 0%, #2CB4D2 100%)',
+    logoShadow:  'rgba(20,132,168,0.35)',
+    cartColor:   '#1484A8',
+    allChipBg:   'linear-gradient(135deg, #1484A8, #2CB4D2)',
+    orderBtn:    'linear-gradient(135deg, #1484A8 0%, #2CB4D2 100%)',
+    orderShadow: 'rgba(20,132,168,0.50)',
+  },
 }
 
 function pluralItems(n: number) {
@@ -50,6 +87,17 @@ export default function CenikPage() {
   const [quantities, setQuantities] = useState<Record<string, number>>({})
   const [category, setCategory]     = useState('Vše')
   const [ordered, setOrdered]       = useState(false)
+  const [layout, setLayout]         = useState(getLayout)
+
+  useEffect(() => {
+    const h = () => setLayout(getLayout())
+    window.addEventListener('popstate', h)
+    return () => window.removeEventListener('popstate', h)
+  }, [])
+
+  const isMono   = layout === 'mono'
+  const theme    = isMono ? THEME.mono : THEME.default
+  const CAT_COLOR = isMono ? CAT_COLOR_MONO : CAT_COLOR_DEFAULT
 
   const visibleItems = useMemo(
     () => (category === 'Vše' ? ITEMS : ITEMS.filter(i => i.category === category)),
@@ -78,11 +126,11 @@ export default function CenikPage() {
   }
 
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)' }}>
+    <Box sx={{ minHeight: '100vh', background: theme.bg }}>
       {/* AppBar */}
       <AppBar position="sticky" elevation={0} sx={{
-        background: 'rgba(243,238,249,0.88)', backdropFilter: 'blur(14px)',
-        borderBottom: '1px solid rgba(103,80,164,0.09)',
+        background: theme.appBarBg, backdropFilter: 'blur(14px)',
+        borderBottom: `1px solid ${theme.appBarBdr}`,
       }}>
         <Toolbar sx={{ gap: 1 }}>
           <IconButton edge="start" onClick={() => window.history.back()} sx={{ color: '#1C1B1F' }}>
@@ -90,9 +138,9 @@ export default function CenikPage() {
           </IconButton>
           <Box sx={{
             width: 36, height: 36, borderRadius: '12px',
-            background: 'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
+            background: theme.logoBg,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(74,126,192,0.35)',
+            boxShadow: `0 2px 8px ${theme.logoShadow}`,
           }}>
             <Icon icon="mdi:tag-multiple" style={{ fontSize: 20, color: '#fff' }} />
           </Box>
@@ -101,7 +149,7 @@ export default function CenikPage() {
           </Typography>
           {totalCount > 0 && (
             <Badge badgeContent={totalCount} color="primary">
-              <ShoppingCart sx={{ color: '#6750A4' }} />
+              <ShoppingCart sx={{ color: theme.cartColor }} />
             </Badge>
           )}
         </Toolbar>
@@ -132,7 +180,7 @@ export default function CenikPage() {
         <Stack direction="row" sx={{ mb: 3, flexWrap: 'wrap', gap: 1 }}>
           {CATEGORIES.map(cat => {
             const active = category === cat
-            const bg = cat === 'Vše' ? 'linear-gradient(135deg, #7B68C8, #9D8FDC)' : CAT_COLOR[cat]
+            const bg = cat === 'Vše' ? theme.allChipBg : CAT_COLOR[cat]
             return (
               <Chip
                 key={cat}
@@ -248,9 +296,9 @@ export default function CenikPage() {
               size="large"
               onClick={handleOrder}
               sx={{
-                background: 'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
+                background: theme.orderBtn,
                 borderRadius: 3, fontWeight: 700, px: 3.5,
-                boxShadow: '0 4px 20px rgba(74,126,192,0.5)',
+                boxShadow: `0 4px 20px ${theme.orderShadow}`,
               }}
             >
               Objednat
