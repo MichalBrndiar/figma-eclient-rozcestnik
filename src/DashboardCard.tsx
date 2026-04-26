@@ -35,14 +35,17 @@ export default function DashboardCard() {
         position: 'relative',
         borderRadius: '24px',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, #6750A4 0%, #4A6FD4 60%, #3B82F6 100%)',
+        background: 'linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #2563EB 100%)',
         p: { xs: 3, sm: 3.5 },
-        boxShadow: '0 8px 32px rgba(103,80,164,0.30)',
+        boxShadow: '0 12px 40px rgba(124,58,237,0.40)',
       }}
     >
+      {/* dot pattern */}
+      <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
       {/* blob dekorace */}
-      <Box sx={{ position: 'absolute', top: -50, right: -50, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.08)', pointerEvents: 'none' }} />
-      <Box sx={{ position: 'absolute', bottom: -40, right: 60, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', top: -60, right: -60, width: 240, height: 240, borderRadius: '50%', background: 'rgba(255,255,255,0.07)', pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', bottom: -50, right: 80, width: 160, height: 160, borderRadius: '50%', background: 'rgba(99,102,241,0.35)', pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', top: 20, left: -60, width: 180, height: 180, borderRadius: '50%', background: 'rgba(219,39,119,0.18)', pointerEvents: 'none' }} />
 
       {/* pozdrav řádek */}
       <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible">

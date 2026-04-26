@@ -14,83 +14,93 @@ import {
   Storefront,
 } from '@mui/icons-material'
 import { motion } from 'framer-motion'
-import AppCard from './AppCard'
+import AppCard, { type CardVariant } from './AppCard'
 import DashboardCard from './DashboardCard'
 import BottomNav from './BottomNav'
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.07 } },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.44, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 }
 
-const apps = [
+interface AppDef {
+  title: string
+  subtitle: string
+  Icon: typeof Badge
+  gradient: string
+  href: string
+  variant: CardVariant
+  size: { xs: number; sm: number }
+}
+
+const apps: AppDef[] = [
   {
     title: 'Průkazka',
-    subtitle: 'Váš digitální průkaz klienta',
+    subtitle: 'Váš digitální průkaz a osobní údaje klienta',
     Icon: Badge,
-    gradient: 'linear-gradient(135deg, #E8D5F5 0%, #D4B8F0 100%)',
-    iconColor: '#6A1B9A',
+    gradient: 'linear-gradient(135deg, #7C3AED 0%, #6366F1 100%)',
     href: '#prukazka',
+    variant: 'featured',
+    size: { xs: 12, sm: 7 },
   },
   {
     title: 'Dokumenty',
     subtitle: 'Smlouvy, formuláře a přílohy',
     Icon: Description,
-    gradient: 'linear-gradient(135deg, #FFF3D0 0%, #FFE4A0 100%)',
-    iconColor: '#E65100',
+    gradient: 'linear-gradient(135deg, #EA580C 0%, #FBBF24 100%)',
     href: '#dokumenty',
+    variant: 'normal',
+    size: { xs: 12, sm: 5 },
   },
   {
     title: 'Objednání stravy',
-    subtitle: 'Jídelníček a výběr jídel',
+    subtitle: 'Jídelníček a výběr jídel na každý den',
     Icon: Restaurant,
-    gradient: 'linear-gradient(135deg, #C8F0D8 0%, #A8E6BC 100%)',
-    iconColor: '#2E7D32',
+    gradient: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
     href: '#strava',
+    variant: 'normal',
+    size: { xs: 12, sm: 5 },
   },
   {
     title: 'Objednání procedur',
-    subtitle: 'Rehabilitace a terapeutické procedury',
+    subtitle: 'Rehabilitace, masáže a terapeutické procedury',
     Icon: Spa,
-    gradient: 'linear-gradient(135deg, #FFD6E8 0%, #FFB8D4 100%)',
-    iconColor: '#AD1457',
+    gradient: 'linear-gradient(135deg, #DB2777 0%, #F472B6 100%)',
     href: '#procedury',
+    variant: 'featured',
+    size: { xs: 12, sm: 7 },
   },
   {
     title: 'Ceníkové položky',
-    subtitle: 'Doplňkové služby a zboží',
+    subtitle: 'Doplňkové služby, hygienické potřeby a zboží z nabídky',
     Icon: Storefront,
-    gradient: 'linear-gradient(135deg, #D6E8FF 0%, #B8D0F8 100%)',
-    iconColor: '#1A237E',
+    gradient: 'linear-gradient(135deg, #0284C7 0%, #6366F1 100%)',
     href: '#cenik',
+    variant: 'wide',
+    size: { xs: 12, sm: 12 },
   },
 ]
 
 export default function App() {
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F6F0FB 0%, #EBF4FF 100%)' }}>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)' }}>
       <AppBar
         position="sticky"
         elevation={0}
-        sx={{ background: 'rgba(246,240,251,0.85)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(103,80,164,0.08)' }}
+        sx={{ background: 'rgba(243,238,249,0.88)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(103,80,164,0.09)' }}
       >
         <Toolbar sx={{ gap: 1.5 }}>
-          <Box
-            sx={{
-              width: 36,
-              height: 36,
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #6750A4 0%, #9C7EDB 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          <Box sx={{
+            width: 36, height: 36, borderRadius: '12px',
+            background: 'linear-gradient(135deg, #7C3AED 0%, #6366F1 100%)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(124,58,237,0.35)',
+          }}>
             <Typography sx={{ color: '#fff', fontWeight: 800, fontSize: 16, lineHeight: 1 }}>e</Typography>
           </Box>
           <Typography variant="h6" sx={{ color: '#1C1B1F', flexGrow: 1, letterSpacing: '-0.3px' }}>
@@ -101,28 +111,33 @@ export default function App() {
 
       <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
-          <Grid container spacing={{ xs: 2, sm: 2.5 }}>
+          <Grid container spacing={{ xs: 1.5, sm: 2 }}>
 
-            {/* dashboard banner – celá šířka */}
             <Grid size={{ xs: 12 }}>
               <motion.div variants={cardVariants}>
                 <DashboardCard />
               </motion.div>
             </Grid>
 
-            {/* label nad kartami */}
             <Grid size={{ xs: 12 }}>
               <motion.div variants={cardVariants}>
-                <Typography variant="subtitle1" sx={{ color: 'rgba(28,27,31,0.45)', fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', fontSize: '0.72rem', mt: 0.5 }}>
+                <Typography variant="overline" sx={{ color: 'rgba(28,27,31,0.4)', fontWeight: 700, letterSpacing: 1.2 }}>
                   Služby
                 </Typography>
               </motion.div>
             </Grid>
 
             {apps.map((app) => (
-              <Grid key={app.href} size={{ xs: 12, sm: 6, md: 4 }}>
+              <Grid key={app.href} size={{ xs: app.size.xs, sm: app.size.sm }}>
                 <motion.div variants={cardVariants} style={{ height: '100%' }}>
-                  <AppCard {...app} />
+                  <AppCard
+                    title={app.title}
+                    subtitle={app.subtitle}
+                    Icon={app.Icon}
+                    gradient={app.gradient}
+                    href={app.href}
+                    variant={app.variant}
+                  />
                 </motion.div>
               </Grid>
             ))}
