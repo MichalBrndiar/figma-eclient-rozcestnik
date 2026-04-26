@@ -17,6 +17,7 @@ import {
 import { motion } from 'framer-motion'
 import AppCard from './AppCard'
 import HeroSection from './HeroSection'
+import BottomNav from './BottomNav'
 
 const containerVariants = {
   hidden: {},
@@ -107,7 +108,7 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 2, sm: 3 } }}>
+      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
         <HeroSection />
 
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
@@ -122,6 +123,7 @@ export default function App() {
           </Grid>
         </motion.div>
       </Container>
+      <BottomNav />
     </Box>
   )
 }
