@@ -167,7 +167,7 @@ export default function CenikPage() {
             }}>
               <Icon icon="mdi:check-circle" style={{ fontSize: 26 }} />
               <Box>
-                <Typography fontWeight={800}>Objednávka odeslána!</Typography>
+                <Typography sx={{ fontWeight: 800 }}>Objednávka odeslána!</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.85 }}>
                   Vaše požadavky budou zpracovány personálem.
                 </Typography>
@@ -225,7 +225,7 @@ export default function CenikPage() {
 
                     {/* name + price */}
                     <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography variant="subtitle2" fontWeight={700} noWrap>
+                      <Typography variant="subtitle2" noWrap sx={{ fontWeight: 700 }}>
                         {item.name}
                       </Typography>
                       <Typography variant="body2" sx={{ color: 'rgba(28,27,31,0.5)', fontWeight: 600 }}>
@@ -234,7 +234,7 @@ export default function CenikPage() {
                     </Box>
 
                     {/* quantity stepper */}
-                    <Stack direction="row" alignItems="center" spacing={0.5} flexShrink={0}>
+                    <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center', flexShrink: 0 }}>
                       <IconButton
                         size="small"
                         onClick={() => setQty(item.id, -1)}
