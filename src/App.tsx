@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
 import LayoutBento from './layouts/LayoutBento'
 import LayoutIllustrated from './layouts/LayoutIllustrated'
+import LayoutMono from './layouts/LayoutMono'
 import BottomNav from './BottomNav'
 import LayoutSwitcher from './LayoutSwitcher'
 import { getLayout, type LayoutVariant } from './useLayout'
@@ -22,8 +23,15 @@ export default function App() {
 
   if (page === 'cenik') return <CenikPage />
 
+  const isMono = layout === 'mono'
+
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)' }}>
+    <Box sx={{
+      minHeight: '100vh',
+      background: isMono
+        ? 'linear-gradient(160deg, #EAE4F6 0%, #DDD5F0 100%)'
+        : 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)',
+    }}>
       <AppBar
         position="sticky"
         elevation={0}
@@ -45,7 +53,7 @@ export default function App() {
       </AppBar>
 
       <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
-        {layout === 'illustrated' ? <LayoutIllustrated /> : <LayoutBento />}
+        {layout === 'illustrated' ? <LayoutIllustrated /> : layout === 'mono' ? <LayoutMono /> : <LayoutBento />}
       </Container>
 
       <BottomNav />

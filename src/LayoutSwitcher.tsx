@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { Box, Tooltip } from '@mui/material'
 import GridViewRounded from '@mui/icons-material/GridViewRounded'
 import ImageRounded from '@mui/icons-material/ImageRounded'
+import InvertColorsRounded from '@mui/icons-material/InvertColorsRounded'
 import { getLayout, setLayout, type LayoutVariant } from './useLayout'
 
 const variants: { key: LayoutVariant; label: string; Icon: typeof GridViewRounded }[] = [
-  { key: 'bento', label: 'Bento (varanta 1)', Icon: GridViewRounded },
-  { key: 'illustrated', label: 'Ilustrace (varianta 2)', Icon: ImageRounded },
+  { key: 'bento',      label: 'Bento (varianta 1)',        Icon: GridViewRounded       },
+  { key: 'illustrated', label: 'Ilustrace (varianta 2)',   Icon: ImageRounded          },
+  { key: 'mono',       label: 'Monochrom (varianta 3)',    Icon: InvertColorsRounded   },
 ]
 
 export default function LayoutSwitcher() {

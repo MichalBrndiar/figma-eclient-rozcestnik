@@ -1,8 +1,10 @@
-export type LayoutVariant = 'bento' | 'illustrated'
+export type LayoutVariant = 'bento' | 'illustrated' | 'mono'
 
 export function getLayout(): LayoutVariant {
   const param = new URLSearchParams(window.location.search).get('layout')
-  return param === 'illustrated' ? 'illustrated' : 'bento'
+  if (param === 'illustrated') return 'illustrated'
+  if (param === 'mono') return 'mono'
+  return 'bento'
 }
 
 export function setLayout(variant: LayoutVariant) {
