@@ -16,6 +16,7 @@ import {
 } from '@mui/icons-material'
 import { motion } from 'framer-motion'
 import AppCard from './AppCard'
+import HeroSection from './HeroSection'
 
 const containerVariants = {
   hidden: {},
@@ -107,24 +108,7 @@ export default function App() {
       </AppBar>
 
       <Container maxWidth="md" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 2, sm: 3 } }}>
-        <Box sx={{ mb: { xs: 3, sm: 5 } }}>
-          <Typography
-            variant="h4"
-            sx={{
-              color: '#1C1B1F',
-              mb: 0.75,
-              background: 'linear-gradient(135deg, #6750A4 0%, #1565C0 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Vítejte v&nbsp;eClientu
-          </Typography>
-          <Typography variant="subtitle1" sx={{ color: 'rgba(28,27,31,0.55)', fontWeight: 500 }}>
-            Vyberte službu, kterou chcete použít
-          </Typography>
-        </Box>
+        <HeroSection />
 
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
           <Grid container spacing={{ xs: 2, sm: 2.5 }}>
