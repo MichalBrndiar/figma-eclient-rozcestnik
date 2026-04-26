@@ -16,6 +16,14 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
   const isFeatured = variant === 'featured'
   const isWide = variant === 'wide'
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (href?.startsWith('/')) {
+      e.preventDefault()
+      window.history.pushState(null, '', href)
+      window.dispatchEvent(new PopStateEvent('popstate'))
+    }
+  }
+
   return (
     <Card
       sx={{
@@ -64,6 +72,7 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
 
       <CardActionArea
         href={href ?? '#'}
+        onClick={handleClick}
         sx={{
           p: { xs: 2.5, sm: isFeatured ? 3 : 2.5 },
           height: '100%',

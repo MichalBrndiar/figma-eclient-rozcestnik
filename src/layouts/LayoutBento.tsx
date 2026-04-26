@@ -65,7 +65,7 @@ const apps: AppDef[] = [
     subtitle: 'Doplňkové služby, hygienické potřeby a zboží z nabídky',
     Icon: Storefront,
     gradient: 'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
-    href: '#cenik',
+    href: '/cenik',
     variant: 'wide',
     size: { xs: 12, sm: 12 },
   },

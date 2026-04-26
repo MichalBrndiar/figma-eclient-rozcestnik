@@ -48,6 +48,14 @@ interface AppCardIllustratedProps {
 }
 
 export default function AppCardIllustrated({ title, subtitle, illustration, gradient, href }: AppCardIllustratedProps) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (href?.startsWith('/')) {
+      e.preventDefault()
+      window.history.pushState(null, '', href)
+      window.dispatchEvent(new PopStateEvent('popstate'))
+    }
+  }
+
   return (
     <Card sx={{
       border: 'none', height: '100%', overflow: 'hidden', background: '#fff',
@@ -57,7 +65,7 @@ export default function AppCardIllustrated({ title, subtitle, illustration, grad
         boxShadow: '0 18px 44px rgba(0,0,0,0.15)',
       },
     }}>
-      <CardActionArea href={href ?? '#'} sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+      <CardActionArea href={href ?? '#'} onClick={handleClick} sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
         <Box sx={{
           background: gradient, height: 170,
           position: 'relative', overflow: 'hidden', flexShrink: 0,

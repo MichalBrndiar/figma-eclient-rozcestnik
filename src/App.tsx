@@ -5,15 +5,22 @@ import LayoutIllustrated from './layouts/LayoutIllustrated'
 import BottomNav from './BottomNav'
 import LayoutSwitcher from './LayoutSwitcher'
 import { getLayout, type LayoutVariant } from './useLayout'
+import CenikPage from './pages/CenikPage'
+
+type Page = 'hub' | 'cenik'
+const getPage = (): Page => (window.location.pathname.startsWith('/cenik') ? 'cenik' : 'hub')
 
 export default function App() {
   const [layout, setLayout] = useState<LayoutVariant>(getLayout)
+  const [page, setPage]     = useState<Page>(getPage)
 
   useEffect(() => {
-    const handler = () => setLayout(getLayout())
+    const handler = () => { setLayout(getLayout()); setPage(getPage()) }
     window.addEventListener('popstate', handler)
     return () => window.removeEventListener('popstate', handler)
   }, [])
+
+  if (page === 'cenik') return <CenikPage />
 
   return (
     <Box sx={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)' }}>

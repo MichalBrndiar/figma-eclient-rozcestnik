@@ -46,7 +46,7 @@ const apps = [
     subtitle: 'Doplňkové služby, hygienické potřeby a zboží z nabídky',
     illustration: 'cenik' as const,
     gradient: 'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
-    href: '#cenik',
+    href: '/cenik',
   },
 ]
 
