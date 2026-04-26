@@ -14,7 +14,18 @@ import {
   Spa,
   Storefront,
 } from '@mui/icons-material'
+import { motion } from 'framer-motion'
 import AppCard from './AppCard'
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+}
 
 const apps = [
   {
@@ -115,13 +126,17 @@ export default function App() {
           </Typography>
         </Box>
 
-        <Grid container spacing={{ xs: 2, sm: 2.5 }}>
-          {apps.map((app) => (
-            <Grid key={app.href} size={{ xs: 12, sm: 6, md: 4 }}>
-              <AppCard {...app} />
-            </Grid>
-          ))}
-        </Grid>
+        <motion.div variants={containerVariants} initial="hidden" animate="visible">
+          <Grid container spacing={{ xs: 2, sm: 2.5 }}>
+            {apps.map((app) => (
+              <Grid key={app.href} size={{ xs: 12, sm: 6, md: 4 }}>
+                <motion.div variants={cardVariants} style={{ height: '100%' }}>
+                  <AppCard {...app} />
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </motion.div>
       </Container>
     </Box>
   )
