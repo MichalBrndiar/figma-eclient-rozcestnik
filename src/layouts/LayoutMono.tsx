@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import AppCard, { type CardVariant } from '../AppCard'
 import DashboardCard from '../DashboardCard'
 
-// ── Monochromatic palette – only blue shades ──────────────────────────────
-// base hue: 215° (deep azure blue)
+// ── Monochromatic palette – aqua marine shades ────────────────────────────
+// base hue: 192° (aqua / cyan-blue)
 const MONO = {
-  deepest: 'linear-gradient(135deg, #0D2A5E 0%, #1A4499 100%)',   // very deep navy
-  deep:    'linear-gradient(135deg, #1A3D8F 0%, #2D5CB8 100%)',   // deep blue
-  primary: 'linear-gradient(135deg, #2756B0 0%, #3D72CC 100%)',   // primary blue
-  medium:  'linear-gradient(135deg, #3868C0 0%, #5488D8 100%)',   // medium blue
-  light:   'linear-gradient(135deg, #4A7EC8 0%, #6699E0 100%)',   // light blue
+  deepest: 'linear-gradient(135deg, #074E6A 0%, #0D7A9E 100%)',   // deep teal
+  deep:    'linear-gradient(135deg, #0D6E8E 0%, #1A96B8 100%)',   // medium teal
+  primary: 'linear-gradient(135deg, #1484A8 0%, #24AACE 100%)',   // aqua
+  medium:  'linear-gradient(135deg, #1E9EBC 0%, #34BDD8 100%)',   // bright aqua
+  light:   'linear-gradient(135deg, #2CB4D2 0%, #48CDE8 100%)',   // light aqua
 }
 
 const containerVariants = {
