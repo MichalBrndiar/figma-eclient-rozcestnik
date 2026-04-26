@@ -9,124 +9,144 @@ const Svg = ({ children }: { children: ReactNode }) => (
   </svg>
 )
 
-// ── Průkazka – line-art průkaz s lanyard ────────────────────────────────────
+// ── Průkazka – nakloněná ID karta ────────────────────────────────────────────
 const IllustrationPrukazka = () => (
   <Svg>
-    {/* lanyard */}
-    <path d="M 56,0 C 54,22 60,38 72,46 C 84,54 100,48 102,38 C 104,28 94,24 88,32 C 82,40 88,52 100,56"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+    {/* dekorativní jiskřičky */}
+    <circle cx="92" cy="38" r="2" fill="rgba(255,255,255,0.3)" />
+    <circle cx="175" cy="118" r="1.5" fill="rgba(255,255,255,0.2)" />
+    <path d="M 168,34 L 168,44 M 163,39 L 173,39"
+      stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" />
     {/* průkaz */}
-    <rect x="66" y="58" width="68" height="48" rx="5"
-      stroke="rgba(255,255,255,0.8)" strokeWidth="2" fill="none"/>
-    {/* foto */}
-    <circle cx="88" cy="78" r="9"
-      stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none"/>
-    {/* jméno */}
-    <line x1="104" y1="74" x2="126" y2="74"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* detail */}
-    <line x1="104" y1="82" x2="120" y2="82"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" strokeLinecap="round"/>
+    <g transform="rotate(-12 138 78)">
+      <rect x="106" y="56" width="64" height="44" rx="5"
+        stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" fill="none" />
+      <circle cx="124" cy="74" r="9"
+        stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none" />
+      <line x1="140" y1="68" x2="162" y2="68"
+        stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="140" y1="78" x2="156" y2="78"
+        stroke="rgba(255,255,255,0.4)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="140" y1="87" x2="150" y2="87"
+        stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
+    </g>
   </Svg>
 )
 
-// ── Dokumenty – line-art dokumenty ──────────────────────────────────────────
+// ── Dokumenty – překrývající se dokumenty ────────────────────────────────────
 const IllustrationDokumenty = () => (
   <Svg>
-    {/* dekorativní křivka */}
-    <path d="M 0,32 C 22,24 46,38 70,30 C 94,22 140,18 172,28 C 188,34 200,26 200,26"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* zadní papír */}
-    <rect x="62" y="44" width="54" height="72" rx="3"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" fill="none"/>
-    {/* přední papír */}
-    <rect x="76" y="54" width="54" height="72" rx="3"
-      stroke="rgba(255,255,255,0.8)" strokeWidth="2" fill="none"/>
-    {/* řádky */}
-    <line x1="86" y1="70" x2="120" y2="70"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="86" y1="80" x2="116" y2="80"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.3" strokeLinecap="round"/>
-    <line x1="86" y1="90" x2="110" y2="90"
-      stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round"/>
+    {/* dekorativní jiskřičky */}
+    <circle cx="98" cy="35" r="1.5" fill="rgba(255,255,255,0.25)" />
+    <circle cx="178" cy="112" r="2" fill="rgba(255,255,255,0.2)" />
+    <path d="M 100,120 L 100,128 M 96,124 L 104,124"
+      stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round" />
+    {/* dokumenty */}
+    <g transform="rotate(-10 140 78)">
+      {/* zadní dokument */}
+      <rect x="114" y="46" width="48" height="64" rx="3"
+        stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none" />
+      {/* přední dokument */}
+      <rect x="122" y="54" width="48" height="64" rx="3"
+        stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" fill="none" />
+      {/* záložka */}
+      <rect x="152" y="50" width="12" height="8" rx="1.5"
+        stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" />
+      {/* řádky */}
+      <line x1="132" y1="70" x2="160" y2="70"
+        stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="132" y1="80" x2="156" y2="80"
+        stroke="rgba(255,255,255,0.4)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="132" y1="90" x2="150" y2="90"
+        stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
+      {/* odrážka */}
+      <circle cx="132" cy="100" r="2"
+        fill="rgba(255,255,255,0.35)" />
+      <line x1="138" y1="100" x2="154" y2="100"
+        stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
+    </g>
   </Svg>
 )
 
-// ── Strava – line-art talíř s příborem ─────────────────────────────────────
+// ── Strava – talíř s příborem ───────────────────────────────────────────────
 const IllustrationStrava = () => (
   <Svg>
-    {/* vlna – levá */}
-    <path d="M 0,82 C 18,76 34,88 50,80 C 58,76 64,80 70,80"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* vlna – pravá */}
-    <path d="M 130,80 C 136,80 142,76 150,80 C 166,88 182,76 200,82"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* talíř vnější */}
-    <circle cx="100" cy="80" r="30"
-      stroke="rgba(255,255,255,0.8)" strokeWidth="2" fill="none"/>
-    {/* talíř střed */}
-    <circle cx="100" cy="80" r="20"
-      stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none"/>
-    {/* talíř vnitřní */}
-    <circle cx="100" cy="80" r="9"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" fill="none"/>
+    {/* dekorativní jiskřičky */}
+    <circle cx="100" cy="36" r="2" fill="rgba(255,255,255,0.25)" />
+    <circle cx="172" cy="42" r="1.5" fill="rgba(255,255,255,0.2)" />
+    <path d="M 170,112 L 170,120 M 166,116 L 174,116"
+      stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round" />
+    {/* talíř */}
+    <circle cx="138" cy="80" r="30"
+      stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" fill="none" />
+    <circle cx="138" cy="80" r="19"
+      stroke="rgba(255,255,255,0.5)" strokeWidth="1.8" fill="none" />
     {/* vidlička */}
-    <path d="M 78,52 L 78,108 M 74,52 L 74,66 M 76,52 L 76,67 M 80,52 L 80,67 M 82,52 L 82,66 M 74,66 Q 78,74 82,66"
-      stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <g transform="translate(108, 80)">
+      <line x1="0" y1="-26" x2="0" y2="26"
+        stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="-4" y1="-26" x2="-4" y2="-14"
+        stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="4" y1="-26" x2="4" y2="-14"
+        stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M -4,-14 Q 0,-8 4,-14"
+        stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" />
+    </g>
     {/* nůž */}
-    <path d="M 122,52 L 122,108 M 122,52 C 128,54 128,68 122,70"
-      stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <g transform="translate(168, 80)">
+      <line x1="0" y1="-26" x2="0" y2="26"
+        stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M 0,-26 C 6,-24 6,-12 0,-10"
+        stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+    </g>
   </Svg>
 )
 
-// ── Procedury – line-art lotos ─────────────────────────────────────────────
+// ── Procedury – jiskřivé hvězdičky ──────────────────────────────────────────
 const IllustrationProcedury = () => (
   <Svg>
-    {/* vlna – levá */}
-    <path d="M 0,107 C 18,101 36,111 56,103 C 68,99 78,103 88,105"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* vlna – pravá */}
-    <path d="M 112,105 C 122,103 132,99 144,103 C 164,111 182,101 200,107"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* horní lístek */}
-    <path d="M 100,105 C 94,83 92,59 100,41 C 108,59 106,83 100,105"
-      stroke="rgba(255,255,255,0.8)" strokeWidth="2" fill="none" strokeLinejoin="round"/>
-    {/* levý horní lístek */}
-    <path d="M 100,105 C 82,89 68,73 62,57 C 76,65 90,81 100,105"
-      stroke="rgba(255,255,255,0.75)" strokeWidth="1.8" fill="none" strokeLinejoin="round"/>
-    {/* pravý horní lístek */}
-    <path d="M 100,105 C 118,89 132,73 138,57 C 124,65 110,81 100,105"
-      stroke="rgba(255,255,255,0.75)" strokeWidth="1.8" fill="none" strokeLinejoin="round"/>
-    {/* levý dolní lístek */}
-    <path d="M 100,105 C 80,99 58,93 44,83 C 56,99 78,107 100,105"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-    {/* pravý dolní lístek */}
-    <path d="M 100,105 C 120,99 142,93 156,83 C 144,99 122,107 100,105"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+    {/* dekorativní tečky */}
+    <circle cx="100" cy="48" r="1.5" fill="rgba(255,255,255,0.2)" />
+    <circle cx="172" cy="120" r="2" fill="rgba(255,255,255,0.25)" />
+    <circle cx="108" cy="128" r="1.5" fill="rgba(255,255,255,0.15)" />
+    {/* velká hvězda */}
+    <path d="M 132,42 Q 140,62 160,70 Q 140,78 132,98 Q 124,78 104,70 Q 124,62 132,42 Z"
+      stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" fill="none" strokeLinejoin="round" />
+    {/* střední hvězda */}
+    <path d="M 160,96 Q 164,104 172,108 Q 164,112 160,120 Q 156,112 148,108 Q 156,104 160,96 Z"
+      stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none" strokeLinejoin="round" />
+    {/* malá hvězda */}
+    <path d="M 108,104 Q 111,109 116,112 Q 111,115 108,120 Q 105,115 100,112 Q 105,109 108,104 Z"
+      stroke="rgba(255,255,255,0.4)" strokeWidth="1.8" fill="none" strokeLinejoin="round" />
   </Svg>
 )
 
-// ── Ceník – line-art cenovka ───────────────────────────────────────────────
+// ── Ceník – nákupní taška se smajlíkem ──────────────────────────────────────
 const IllustrationCenik = () => (
   <Svg>
-    {/* stuha – levá */}
-    <path d="M 0,70 C 16,62 34,76 50,68 C 60,64 66,68 72,72"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* stuha – pravá */}
-    <path d="M 132,80 C 140,80 148,76 158,80 C 174,88 190,76 200,82"
-      stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    {/* cenovka */}
-    <path d="M 80,58 L 128,58 C 132,58 134,60 134,64 L 134,96 C 134,100 132,102 128,102 L 80,102 L 66,80 L 80,58 Z"
-      stroke="rgba(255,255,255,0.8)" strokeWidth="2" fill="none" strokeLinejoin="round"/>
-    {/* otvor */}
-    <circle cx="82" cy="80" r="4"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" fill="none"/>
-    {/* cena */}
-    <line x1="96" y1="76" x2="124" y2="76"
-      stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-    {/* detail */}
-    <line x1="96" y1="86" x2="118" y2="86"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" strokeLinecap="round"/>
+    {/* dekorativní jiskřičky */}
+    <circle cx="98" cy="40" r="2" fill="rgba(255,255,255,0.25)" />
+    <circle cx="175" cy="116" r="1.5" fill="rgba(255,255,255,0.2)" />
+    <path d="M 106,120 L 106,128 M 102,124 L 110,124"
+      stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round" />
+    {/* taška */}
+    <g transform="rotate(-8 140 82)">
+      {/* tělo */}
+      <rect x="116" y="62" width="48" height="50" rx="5"
+        stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" fill="none" />
+      {/* ucho */}
+      <path d="M 128,62 C 128,46 152,46 152,62"
+        stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* oko L */}
+      <circle cx="132" cy="82" r="2.5"
+        fill="rgba(255,255,255,0.6)" />
+      {/* oko R */}
+      <circle cx="148" cy="82" r="2.5"
+        fill="rgba(255,255,255,0.6)" />
+      {/* úsměv */}
+      <path d="M 132,92 Q 140,100 148,92"
+        stroke="rgba(255,255,255,0.55)" strokeWidth="2" fill="none" strokeLinecap="round" />
+    </g>
   </Svg>
 )
 // ─────────────────────────────────────────────────────────────────────────────
