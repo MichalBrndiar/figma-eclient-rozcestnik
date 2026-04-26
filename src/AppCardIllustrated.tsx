@@ -51,7 +51,9 @@ export default function AppCardIllustrated({ title, subtitle, illustration, grad
   const handleClick = (e: React.MouseEvent) => {
     if (href?.startsWith('/')) {
       e.preventDefault()
-      window.history.pushState(null, '', href)
+      const url = new URL(window.location.href)
+      url.pathname = href
+      window.history.pushState(null, '', url.toString())
       window.dispatchEvent(new PopStateEvent('popstate'))
     }
   }
