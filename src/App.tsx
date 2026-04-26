@@ -7,7 +7,6 @@ import {
   Typography,
 } from '@mui/material'
 import {
-  Home,
   Badge,
   Description,
   Restaurant,
@@ -16,7 +15,7 @@ import {
 } from '@mui/icons-material'
 import { motion } from 'framer-motion'
 import AppCard from './AppCard'
-import HeroSection from './HeroSection'
+import DashboardCard from './DashboardCard'
 import BottomNav from './BottomNav'
 
 const containerVariants = {
@@ -30,14 +29,6 @@ const cardVariants = {
 }
 
 const apps = [
-  {
-    title: 'Homepage',
-    subtitle: 'Hlavní přehled a novinky',
-    Icon: Home,
-    gradient: 'linear-gradient(135deg, #D0E8FF 0%, #B8D8FF 100%)',
-    iconColor: '#1565C0',
-    href: '#homepage',
-  },
   {
     title: 'Průkazka',
     subtitle: 'Váš digitální průkaz klienta',
@@ -108,11 +99,26 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
-        <HeroSection />
-
+      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
           <Grid container spacing={{ xs: 2, sm: 2.5 }}>
+
+            {/* dashboard banner – celá šířka */}
+            <Grid size={{ xs: 12 }}>
+              <motion.div variants={cardVariants}>
+                <DashboardCard />
+              </motion.div>
+            </Grid>
+
+            {/* label nad kartami */}
+            <Grid size={{ xs: 12 }}>
+              <motion.div variants={cardVariants}>
+                <Typography variant="subtitle1" sx={{ color: 'rgba(28,27,31,0.45)', fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', fontSize: '0.72rem', mt: 0.5 }}>
+                  Služby
+                </Typography>
+              </motion.div>
+            </Grid>
+
             {apps.map((app) => (
               <Grid key={app.href} size={{ xs: 12, sm: 6, md: 4 }}>
                 <motion.div variants={cardVariants} style={{ height: '100%' }}>
@@ -120,9 +126,11 @@ export default function App() {
                 </motion.div>
               </Grid>
             ))}
+
           </Grid>
         </motion.div>
       </Container>
+
       <BottomNav />
     </Box>
   )
