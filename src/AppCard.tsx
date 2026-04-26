@@ -35,7 +35,7 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
       {/* dot pattern overlay */}
       <Box sx={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        backgroundImage: 'radial-gradient(rgba(255,255,255,0.13) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)',
         backgroundSize: '22px 22px',
       }} />
 
