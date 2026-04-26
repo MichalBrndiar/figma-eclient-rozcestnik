@@ -60,64 +60,57 @@ const IllustrationDokumenty = () => (
 )
 
 // ── Strava ───────────────────────────────────────────────────────────────────
-// Abstrakce: dokonalý kruh (talíř) + dvě diagonální linie (příbor) + organické tvary
+// Dominanta: tři velké S-křivky páry stoupající z misky
 const IllustrationStrava = () => (
   <Svg>
-    {/* stín talíře */}
-    <ellipse cx="102" cy="140" rx="52" ry="10" fill="rgba(0,0,0,0.08)" />
-    {/* vnější okraj talíře */}
-    <circle cx="100" cy="88" r="58" fill="rgba(255,255,255,0.18)"
-      stroke="rgba(255,255,255,0.42)" strokeWidth="2" />
-    {/* vnitřní plocha */}
-    <circle cx="100" cy="88" r="44" fill="rgba(255,255,255,0.14)" />
-    {/* abstraktní jídlo – tři organické oblouky */}
-    <path d="M76 80 Q88 62 104 74 Q120 62 130 80 Q120 100 100 100 Q80 100 76 80 Z"
-      fill="rgba(255,255,255,0.42)" />
-    <path d="M84 84 Q100 70 116 84" stroke="rgba(255,255,255,0.55)"
-      strokeWidth="2.5" strokeLinecap="round" fill="none" />
-    {/* vidlička vlevo – jednoduchá linie */}
-    <line x1="36" y1="44" x2="44" y2="136"
-      stroke="rgba(255,255,255,0.45)" strokeWidth="3" strokeLinecap="round" />
-    {/* nůž vpravo */}
-    <line x1="160" y1="44" x2="156" y2="136"
-      stroke="rgba(255,255,255,0.38)" strokeWidth="3" strokeLinecap="round" />
-    {/* pára – tři vlny */}
-    <path d="M86 38 Q82 28 86 18" stroke="rgba(255,255,255,0.40)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-    <path d="M100 34 Q96 24 100 14" stroke="rgba(255,255,255,0.50)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-    <path d="M114 38 Q110 28 114 18" stroke="rgba(255,255,255,0.38)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+    {/* levá S-křivka – nejširší swing */}
+    <path d="M62 170 C38 140 86 110 62 80 C38 50 86 20 62 -10"
+      stroke="rgba(255,255,255,0.38)" strokeWidth="5" strokeLinecap="round" fill="none" />
+    {/* středová S-křivka – nejsilnější */}
+    <path d="M100 170 C76 140 124 110 100 80 C76 50 124 20 100 -10"
+      stroke="rgba(255,255,255,0.55)" strokeWidth="6" strokeLinecap="round" fill="none" />
+    {/* pravá S-křivka */}
+    <path d="M138 170 C114 140 162 110 138 80 C114 50 162 20 138 -10"
+      stroke="rgba(255,255,255,0.38)" strokeWidth="5" strokeLinecap="round" fill="none" />
+    {/* miska – jednoduchý oblouk dole */}
+    <path d="M34 148 Q100 182 166 148"
+      stroke="rgba(255,255,255,0.55)" strokeWidth="4" strokeLinecap="round" fill="none" />
+    <path d="M34 148 Q100 148 166 148 Q166 155 100 162 Q34 155 34 148 Z"
+      fill="rgba(255,255,255,0.20)" />
+    {/* nožičky misky */}
+    <line x1="80" y1="162" x2="76" y2="172" stroke="rgba(255,255,255,0.32)" strokeWidth="3" strokeLinecap="round" />
+    <line x1="120" y1="162" x2="124" y2="172" stroke="rgba(255,255,255,0.32)" strokeWidth="3" strokeLinecap="round" />
   </Svg>
 )
 
 // ── Procedury ────────────────────────────────────────────────────────────────
-// Abstrakce: soustředné oblouky (vlnění/lotos/zen) vyzařující z centra
+// Dominanta: pět velkých botanických listů kolem středu (spa/wellness)
 const IllustrationProcedury = () => (
   <Svg>
-    {/* soustředné půloblouky – od největšího */}
-    <path d="M14 120 A86 86 0 0 1 186 120"
-      stroke="rgba(255,255,255,0.14)" strokeWidth="2" fill="none" />
-    <path d="M30 120 A70 70 0 0 1 170 120"
-      stroke="rgba(255,255,255,0.20)" strokeWidth="2" fill="none" />
-    <path d="M46 120 A54 54 0 0 1 154 120"
-      stroke="rgba(255,255,255,0.28)" strokeWidth="2.5" fill="none" />
-    <path d="M62 120 A38 38 0 0 1 138 120"
-      stroke="rgba(255,255,255,0.38)" strokeWidth="3" fill="none" />
-    <path d="M78 120 A22 22 0 0 1 122 120"
-      stroke="rgba(255,255,255,0.50)" strokeWidth="3.5" fill="none" />
-    <path d="M90 120 A10 10 0 0 1 110 120"
-      stroke="rgba(255,255,255,0.65)" strokeWidth="4" fill="none" />
-    {/* středový bod */}
-    <circle cx="100" cy="120" r="6" fill="rgba(255,255,255,0.72)" />
-    <circle cx="100" cy="120" r="2.5" fill="rgba(255,255,255,0.90)" />
-    {/* svislá osa – stonkový prvek */}
-    <line x1="100" y1="8" x2="100" y2="114"
-      stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" strokeLinecap="round" />
-    {/* dva listy symetricky */}
-    <path d="M100 50 Q68 60 64 88 Q86 78 100 50 Z" fill="rgba(255,255,255,0.28)" />
-    <path d="M100 50 Q132 60 136 88 Q114 78 100 50 Z" fill="rgba(255,255,255,0.28)" />
-    {/* květ nahoře */}
-    <circle cx="100" cy="22" r="14" fill="rgba(255,255,255,0.30)"
-      stroke="rgba(255,255,255,0.48)" strokeWidth="1.5" />
-    <circle cx="100" cy="22" r="7" fill="rgba(255,255,255,0.50)" />
+    {/* list nahoru */}
+    <path d="M100 80 C116 56 118 24 100 8 C82 24 84 56 100 80 Z"
+      fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.38)" strokeWidth="1" />
+    {/* list vpravo-nahoru */}
+    <path d="M100 80 C126 74 148 52 148 28 C124 22 104 46 100 80 Z"
+      fill="rgba(255,255,255,0.26)" stroke="rgba(255,255,255,0.40)" strokeWidth="1" />
+    {/* list vpravo-dolu */}
+    <path d="M100 80 C128 86 154 112 140 134 C116 136 96 106 100 80 Z"
+      fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.36)" strokeWidth="1" />
+    {/* list vlevo-dolu */}
+    <path d="M100 80 C72 86 46 112 60 134 C84 136 104 106 100 80 Z"
+      fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.36)" strokeWidth="1" />
+    {/* list vlevo-nahoru */}
+    <path d="M100 80 C74 74 52 52 52 28 C76 22 96 46 100 80 Z"
+      fill="rgba(255,255,255,0.26)" stroke="rgba(255,255,255,0.40)" strokeWidth="1" />
+    {/* žilky listů – jemné středové linie */}
+    <line x1="100" y1="80" x2="100" y2="10" stroke="rgba(255,255,255,0.28)" strokeWidth="1" strokeLinecap="round" />
+    <line x1="100" y1="80" x2="147" y2="29" stroke="rgba(255,255,255,0.24)" strokeWidth="1" strokeLinecap="round" />
+    <line x1="100" y1="80" x2="139" y2="133" stroke="rgba(255,255,255,0.20)" strokeWidth="1" strokeLinecap="round" />
+    <line x1="100" y1="80" x2="61" y2="133" stroke="rgba(255,255,255,0.20)" strokeWidth="1" strokeLinecap="round" />
+    <line x1="100" y1="80" x2="53" y2="29" stroke="rgba(255,255,255,0.24)" strokeWidth="1" strokeLinecap="round" />
+    {/* středový kruh */}
+    <circle cx="100" cy="80" r="14" fill="rgba(255,255,255,0.42)" />
+    <circle cx="100" cy="80" r="6"  fill="rgba(255,255,255,0.70)" />
   </Svg>
 )
 
