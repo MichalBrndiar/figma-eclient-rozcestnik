@@ -29,7 +29,7 @@ export default function App() {
     <Box sx={{
       minHeight: '100vh',
       background: isMono
-        ? 'linear-gradient(160deg, #EAE4F6 0%, #DDD5F0 100%)'
+        ? 'linear-gradient(160deg, #E0EAFA 0%, #D0E2F8 100%)'
         : 'linear-gradient(160deg, #F3EEF9 0%, #E8F0FE 100%)',
     }}>
       <AppBar
