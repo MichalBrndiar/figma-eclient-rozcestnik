@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Box, Typography } from '@mui/material'
 import { Home } from '@mui/icons-material'
@@ -18,7 +19,89 @@ function navigate(href: string, onClose: () => void) {
   window.dispatchEvent(new PopStateEvent('popstate'))
 }
 
+// ── Per-effect animation configs ───────────────────────────────────────────────
+
+const EFFECTS = [
+  // 0: Radial burst – circle z hamburgeru
+  {
+    panel: {
+      initial: { clipPath: 'circle(0px at 36px 30px)' },
+      animate: { clipPath: 'circle(200% at 36px 30px)' },
+      exit:    { clipPath: 'circle(0px at 36px 30px)' as string | object },
+      transition:     { duration: 0.78, ease: [0.22, 1, 0.36, 1] as number[] },
+      exitTransition: { duration: 0.4,  ease: [0.55, 0, 1, 0.45] as number[] },
+      extraStyle: {},
+    },
+    items: (i: number) => ({
+      initial: { opacity: 0, x: -20 },
+      animate: { opacity: 1, x: 0 },
+      transition: { delay: 0.28 + i * 0.07, duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+    }),
+  },
+
+  // 1: 3D page fold – panel se přetočí jako stránka
+  {
+    panel: {
+      initial: { rotateY: -90, opacity: 0.6 },
+      animate: { rotateY: 0,   opacity: 1 },
+      exit:    { rotateY: -90, opacity: 0.6 },
+      transition:     { duration: 0.7, ease: [0.22, 1, 0.36, 1] as number[] },
+      exitTransition: { duration: 0.35, ease: [0.55, 0, 1, 0.45] as number[] },
+      extraStyle: { transformOrigin: 'left center', transformPerspective: 900 },
+    },
+    items: (i: number) => ({
+      initial: { opacity: 0, y: -18, rotateX: 30 },
+      animate: { opacity: 1, y: 0,   rotateX: 0 },
+      transition: { delay: 0.22 + i * 0.065, duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+    }),
+  },
+
+  // 2: Elastic spring – panel se natáhne s přestřelením
+  {
+    panel: {
+      initial: { scaleX: 0, opacity: 0.4 },
+      animate: { scaleX: 1, opacity: 1 },
+      exit:    { scaleX: 0, opacity: 0 },
+      transition:     { type: 'spring', damping: 11, stiffness: 110 } as object,
+      exitTransition: { duration: 0.26, ease: [0.55, 0, 1, 0.45] as number[] },
+      extraStyle: { transformOrigin: 'left center' },
+    },
+    items: (i: number) => ({
+      initial: { opacity: 0, scale: 0.78 },
+      animate: { opacity: 1, scale: 1 },
+      transition: { type: 'spring', delay: 0.1 + i * 0.06, damping: 14, stiffness: 260 },
+    }),
+  },
+]
+
+// ── Component ──────────────────────────────────────────────────────────────────
+
 export default function NavPanel({ open, onClose }: NavPanelProps) {
+  const [effectIdx, setEffectIdx] = useState(0)
+  const prevOpen = useRef(false)
+
+  useEffect(() => {
+    if (open && !prevOpen.current) {
+      setEffectIdx(i => (i + 1) % EFFECTS.length)
+    }
+    prevOpen.current = open
+  }, [open])
+
+  const eff = EFFECTS[effectIdx]
+
+  const panelStyle: React.CSSProperties = {
+    position: 'fixed', top: 0, left: 0, bottom: 0,
+    width: 'min(320px, 88vw)',
+    zIndex: 1501,
+    background: 'rgba(248,248,252,0.97)',
+    backdropFilter: 'blur(20px)',
+    display: 'flex',
+    flexDirection: 'column',
+    overflowY: 'auto',
+    boxShadow: '4px 0 32px rgba(0,0,0,0.18)',
+    ...eff.panel.extraStyle,
+  }
+
   return createPortal(
     <AnimatePresence>
       {open && (
@@ -40,34 +123,21 @@ export default function NavPanel({ open, onClose }: NavPanelProps) {
 
           {/* Panel */}
           <motion.div
-            key="panel"
-            variants={{
-              hidden:   { clipPath: 'circle(0px at 36px 30px)' },
-              visible:  { clipPath: 'circle(200% at 36px 30px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-            }}
-            initial="hidden"
-            animate="visible"
-            exit={{ clipPath: 'circle(0px at 36px 30px)', transition: { duration: 0.32, ease: [0.55, 0, 1, 0.45] } }}
-            style={{
-              position: 'fixed', top: 0, left: 0, bottom: 0,
-              width: 'min(320px, 88vw)',
-              zIndex: 1501,
-              background: 'rgba(248,248,252,0.97)',
-              backdropFilter: 'blur(20px)',
-              display: 'flex',
-              flexDirection: 'column',
-              overflowY: 'auto',
-              boxShadow: '4px 0 32px rgba(0,0,0,0.18)',
-            }}
+            key={`panel-${effectIdx}`}
+            initial={eff.panel.initial}
+            animate={eff.panel.animate}
+            exit={{ ...eff.panel.exit, transition: eff.panel.exitTransition }}
+            transition={eff.panel.transition}
+            style={panelStyle}
           >
-            {/* Header */}
+            {/* Header – Úvodní stránka */}
             <Box
               onClick={() => navigate('/', onClose)}
               sx={{
                 px: 2, pt: 3.5, pb: 2, display: 'flex', alignItems: 'center', gap: 1,
-                cursor: 'pointer', borderRadius: '0 0 16px 0',
+                cursor: 'pointer',
                 transition: 'background 0.15s',
-                '&:hover': { background: 'rgba(123,104,200,0.07)' },
+                '&:hover':  { background: 'rgba(123,104,200,0.07)' },
                 '&:active': { background: 'rgba(123,104,200,0.14)' },
               }}
             >
@@ -90,45 +160,42 @@ export default function NavPanel({ open, onClose }: NavPanelProps) {
 
             {/* Nav items */}
             <Box sx={{ px: 1.5, pb: 2, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
-              {NAV_APPS.map((app, i) => (
-                <motion.div
-                  key={app.href}
-                  initial={{ opacity: 0, y: 12, scale: 0.93 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.18 + i * 0.055, duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Box
-                    onClick={() => navigate(app.href, onClose)}
-                    sx={{
-                      display: 'flex', alignItems: 'center', gap: 1.5,
-                      p: 1.25,
-                      borderRadius: '14px',
-                      background: app.gradient,
-                      cursor: 'pointer',
-                      transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-                      '&:hover': {
-                        transform: 'translateX(4px)',
-                        boxShadow: '0 6px 20px rgba(0,0,0,0.18)',
-                      },
-                      '&:active': { transform: 'scale(0.98)' },
-                    }}
+              {NAV_APPS.map((app, i) => {
+                const itemAnim = eff.items(i)
+                return (
+                  <motion.div
+                    key={app.href}
+                    initial={itemAnim.initial}
+                    animate={itemAnim.animate}
+                    transition={itemAnim.transition}
                   >
-                    <Box sx={{
-                      width: 40, height: 40, flexShrink: 0,
-                      borderRadius: '12px',
-                      background: 'rgba(255,255,255,0.22)',
-                      backdropFilter: 'blur(4px)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                    }}>
-                      <app.Icon sx={{ fontSize: 22, color: '#fff' }} />
+                    <Box
+                      onClick={() => navigate(app.href, onClose)}
+                      sx={{
+                        display: 'flex', alignItems: 'center', gap: 1.5,
+                        p: 1.25, borderRadius: '14px',
+                        background: app.gradient,
+                        cursor: 'pointer',
+                        transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+                        '&:hover':  { transform: 'translateX(4px)', boxShadow: '0 6px 20px rgba(0,0,0,0.18)' },
+                        '&:active': { transform: 'scale(0.98)' },
+                      }}
+                    >
+                      <Box sx={{
+                        width: 40, height: 40, flexShrink: 0, borderRadius: '12px',
+                        background: 'rgba(255,255,255,0.22)', backdropFilter: 'blur(4px)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                      }}>
+                        <app.Icon sx={{ fontSize: 22, color: '#fff' }} />
+                      </Box>
+                      <Typography sx={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.2 }}>
+                        {app.title}
+                      </Typography>
                     </Box>
-                    <Typography sx={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.2 }}>
-                      {app.title}
-                    </Typography>
-                  </Box>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </Box>
           </motion.div>
         </>
