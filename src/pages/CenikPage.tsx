@@ -113,6 +113,7 @@ function toDateKey(date: Date) {
 export default function CenikPage() {
   const [category, setCategory]       = useState('Vše')
   const [ordered, setOrdered]         = useState(false)
+  const [orderedColor, setOrderedColor] = useState('#5b4fa0')
   const [layout, setLayout]           = useState(getLayout)
 
   // order dialog (quantity + note)
@@ -173,6 +174,7 @@ export default function CenikPage() {
   }
   const closeOrderDialog = () => setOrderItem(null)
   const confirmOrder = () => {
+    setOrderedColor(orderColor)
     closeOrderDialog()
     setOrdered(true)
     setTimeout(() => setOrdered(false), 5000)
@@ -187,6 +189,7 @@ export default function CenikPage() {
   }
   const closePickerDialog = () => setPickerItem(null)
   const confirmPicker = () => {
+    setOrderedColor(pickerColor)
     closePickerDialog()
     setOrdered(true)
     setTimeout(() => setOrdered(false), 5000)
@@ -321,7 +324,7 @@ export default function CenikPage() {
         />
       )}
 
-      {ordered && <ThankYouOverlay />}
+      {ordered && <ThankYouOverlay accentColor={orderedColor} onDismiss={() => setOrdered(false)} />}
     </Box>
   )
 }

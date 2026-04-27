@@ -115,11 +115,11 @@
 
 .od-label {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--accent-sub);
+  color: var(--accent);
   font-family: inherit;
 }
 
