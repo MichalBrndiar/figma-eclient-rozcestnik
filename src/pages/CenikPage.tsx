@@ -3,7 +3,8 @@ import {
   AppBar, Box, Chip, Container, IconButton,
   Stack, Toolbar, Typography, Card, Grid, Button,
 } from '@mui/material'
-import { ArrowBack } from '@mui/icons-material'
+import { Menu as MenuIcon } from '@mui/icons-material'
+import NavPanel from '../NavPanel'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
 import { getLayout } from '../useLayout'
@@ -114,6 +115,7 @@ export default function CenikPage() {
   const [category, setCategory]       = useState('Vše')
   const [ordered, setOrdered]         = useState(false)
   const [orderedColor, setOrderedColor] = useState('#5b4fa0')
+  const [navOpen, setNavOpen]          = useState(false)
   const [layout, setLayout]           = useState(getLayout)
 
   // order dialog (quantity + note)
@@ -216,8 +218,8 @@ export default function CenikPage() {
       {/* AppBar */}
       <AppBar position="sticky" elevation={0} sx={{ background: theme.appBarBg, backdropFilter: 'blur(14px)', borderBottom: `1px solid ${theme.appBarBdr}` }}>
         <Toolbar sx={{ gap: 1 }}>
-          <IconButton edge="start" onClick={() => window.history.back()} sx={{ color: '#1C1B1F' }}>
-            <ArrowBack />
+          <IconButton edge="start" onClick={() => setNavOpen(true)} sx={{ color: '#1C1B1F' }}>
+            <MenuIcon />
           </IconButton>
           <Box sx={{ width: 36, height: 36, borderRadius: '12px', background: theme.logoBg, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 2px 8px ${theme.logoShadow}` }}>
             <Icon icon="mdi:tag-multiple" style={{ fontSize: 20, color: '#fff' }} />
@@ -325,6 +327,7 @@ export default function CenikPage() {
       )}
 
       {ordered && <ThankYouOverlay accentColor={orderedColor} onDismiss={() => setOrdered(false)} />}
+      <NavPanel open={navOpen} onClose={() => setNavOpen(false)} />
     </Box>
   )
 }

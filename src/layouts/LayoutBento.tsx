@@ -1,8 +1,8 @@
 import { Grid, Typography } from '@mui/material'
-import { Badge, Description, InfoOutlined, Restaurant, Spa, Storefront } from '@mui/icons-material'
 import { motion } from 'framer-motion'
-import AppCard, { type CardVariant } from '../AppCard'
+import AppCard from '../AppCard'
 import DashboardCard from '../DashboardCard'
+import { NAV_APPS } from '../navApps'
 
 const containerVariants = {
   hidden: {},
@@ -12,73 +12,6 @@ const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.44, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 }
-
-interface AppDef {
-  title: string
-  subtitle: string
-  Icon: typeof Badge
-  gradient: string
-  href: string
-  variant: CardVariant
-  size: { xs: number; sm: number }
-}
-
-const apps: AppDef[] = [
-  {
-    title: 'O nás',
-    subtitle: '',
-    Icon: InfoOutlined,
-    gradient: 'linear-gradient(135deg, #5C6F8C 0%, #7D90B0 100%)',
-    href: '#o-nas',
-    variant: 'wide',
-    size: { xs: 12, sm: 12 },
-  },
-  {
-    title: 'Průkazka',
-    subtitle: 'Váš digitální průkaz a osobní údaje klienta',
-    Icon: Badge,
-    gradient: 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
-    href: '#prukazka',
-    variant: 'featured',
-    size: { xs: 12, sm: 7 },
-  },
-  {
-    title: 'Dokumenty',
-    subtitle: 'Smlouvy, formuláře a přílohy',
-    Icon: Description,
-    gradient: 'linear-gradient(135deg, #C8784A 0%, #DBA96A 100%)',
-    href: '#dokumenty',
-    variant: 'normal',
-    size: { xs: 12, sm: 5 },
-  },
-  {
-    title: 'Objednání stravy',
-    subtitle: 'Jídelníček a výběr jídel na každý den',
-    Icon: Restaurant,
-    gradient: 'linear-gradient(135deg, #3A9E80 0%, #62BFA0 100%)',
-    href: '#strava',
-    variant: 'normal',
-    size: { xs: 12, sm: 5 },
-  },
-  {
-    title: 'Objednání procedur',
-    subtitle: 'Rehabilitace, masáže a terapeutické procedury',
-    Icon: Spa,
-    gradient: 'linear-gradient(135deg, #B85C8A 0%, #D48CB0 100%)',
-    href: '#procedury',
-    variant: 'featured',
-    size: { xs: 12, sm: 7 },
-  },
-  {
-    title: 'Ceníkové položky',
-    subtitle: 'Doplňkové služby, hygienické potřeby a zboží z nabídky',
-    Icon: Storefront,
-    gradient: 'linear-gradient(135deg, #4A7EC0 0%, #7B8DD4 100%)',
-    href: '/cenik',
-    variant: 'wide',
-    size: { xs: 12, sm: 12 },
-  },
-]
 
 export default function LayoutBento() {
   return (
@@ -98,7 +31,7 @@ export default function LayoutBento() {
           </motion.div>
         </Grid>
 
-        {apps.map((app) => (
+        {NAV_APPS.map((app) => (
           <Grid key={app.href} size={{ xs: app.size.xs, sm: app.size.sm }}>
             <motion.div variants={cardVariants} style={{ height: '100%' }}>
               <AppCard
