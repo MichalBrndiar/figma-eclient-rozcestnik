@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
+
+.od-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(21, 37, 28, 0.38);
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+}
+
+.od-dialog {
+  width: min(100%, 480px);
+  border-radius: 20px;
+  border: 1px solid var(--accent-bdr);
+  background: var(--accent-bg);
+  padding: 1.2rem;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.18);
+  display: grid;
+  gap: 1rem;
+}
+
+/* ── Header ── */
+
+.od-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.od-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.od-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.od-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent-text);
+  line-height: 1.2;
+  font-family: inherit;
+}
+
+.od-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-sub);
+  font-family: inherit;
+}
+
+/* ── Stepper ── */
+
+.od-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.od-stepper-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  font-family: inherit;
+  transition: opacity 0.14s;
+}
+
+.od-stepper-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.od-qty {
+  font-size: 1.2rem;
+  font-weight: 800;
+  min-width: 26px;
+  text-align: center;
+  color: var(--accent);
+  font-family: inherit;
+}
+
+/* ── Note block ── */
+
+.od-block {
+  border: 1px solid var(--accent-bdr);
+  border-radius: 12px;
+  background: var(--accent-block);
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.od-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-sub);
+  font-family: inherit;
+}
+
+.od-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid var(--accent-bdr);
+  border-radius: 9px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--accent-text);
+  background: #ffffff;
+  line-height: 1.5;
+  outline: none;
+}
+
+.od-textarea::placeholder {
+  color: var(--accent-placeholder);
+}
+
+.od-textarea:focus {
+  border-color: var(--accent);
+}
+
+/* ── Actions ── */
+
+.od-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.od-cancel,
+.od-confirm {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.62rem 1.2rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.od-cancel {
+  background: var(--accent-block);
+  color: var(--accent-sub);
+  border: 1px solid var(--accent-bdr);
+}
+
+.od-cancel:hover {
+  background: var(--accent-bdr);
+}
+
+.od-confirm {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.od-confirm:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 480px) {
+  .od-dialog {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+}

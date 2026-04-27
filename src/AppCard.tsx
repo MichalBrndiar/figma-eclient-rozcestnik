@@ -12,7 +12,7 @@ interface AppCardProps {
   variant?: CardVariant
 }
 
-export default function AppCard({ title, subtitle, Icon, gradient, href, variant = 'normal' }: AppCardProps) {
+export default function AppCard({ title, Icon, gradient, href, variant = 'normal' }: AppCardProps) {
   const isFeatured = variant === 'featured'
   const isWide = variant === 'wide'
 
@@ -32,7 +32,7 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
         background: gradient,
         border: 'none',
         height: '100%',
-        minHeight: isFeatured ? { sm: 200 } : isWide ? 130 : { sm: 160 },
+        minHeight: isFeatured ? 88 : 72,
         position: 'relative',
         overflow: 'hidden',
         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -76,19 +76,20 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
         href={href ?? '#'}
         onClick={handleClick}
         sx={{
-          p: { xs: 2.5, sm: isFeatured ? 3 : 2.5 },
+          p: { xs: 2, sm: isFeatured ? 2.5 : 2 },
           height: '100%',
           display: 'flex',
-          flexDirection: isWide ? 'row' : 'column',
-          alignItems: isWide ? 'center' : 'flex-start',
-          gap: isWide ? 2.5 : 2,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          gap: 2,
         }}
       >
         <Box sx={{
-          width: isFeatured ? 64 : 52,
-          height: isFeatured ? 64 : 52,
+          width: isFeatured ? 56 : 48,
+          height: isFeatured ? 56 : 48,
           flexShrink: 0,
-          borderRadius: isFeatured ? '20px' : '16px',
+          borderRadius: isFeatured ? '18px' : '14px',
           background: 'rgba(255,255,255,0.2)',
           backdropFilter: 'blur(4px)',
           display: 'flex',
@@ -96,20 +97,14 @@ export default function AppCard({ title, subtitle, Icon, gradient, href, variant
           justifyContent: 'center',
           boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
         }}>
-          <Icon sx={{ fontSize: isFeatured ? 34 : 28, color: '#fff' }} />
+          <Icon sx={{ fontSize: isFeatured ? 30 : 26, color: '#fff' }} />
         </Box>
 
-        <Box sx={{ flex: 1 }}>
-          <Typography
-            variant={isFeatured ? 'h6' : 'subtitle1'}
-            sx={{ color: '#fff', fontWeight: 800, lineHeight: 1.2, mb: 0.5 }}
-          >
-            {title}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.45, fontWeight: 500 }}>
-            {subtitle}
-          </Typography>
-        </Box>
+        <Typography
+          sx={{ color: '#fff', fontWeight: 800, lineHeight: 1.2, fontSize: '1rem' }}
+        >
+          {title}
+        </Typography>
       </CardActionArea>
     </Card>
   )

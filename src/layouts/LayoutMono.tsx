@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material'
-import { Badge, Description, Restaurant, Spa, Storefront } from '@mui/icons-material'
+import { Badge, Description, InfoOutlined, Restaurant, Spa, Storefront } from '@mui/icons-material'
 import { motion } from 'framer-motion'
 import AppCard, { type CardVariant } from '../AppCard'
 import DashboardCard from '../DashboardCard'
@@ -34,6 +34,15 @@ interface AppDef {
 }
 
 const apps: AppDef[] = [
+  {
+    title:    'O nás',
+    subtitle: '',
+    Icon:     InfoOutlined,
+    gradient: MONO.deepest,
+    href:     '#o-nas',
+    variant:  'wide',
+    size:     { xs: 12, sm: 12 },
+  },
   {
     title:    'Průkazka',
     subtitle: 'Váš digitální průkaz a osobní údaje klienta',

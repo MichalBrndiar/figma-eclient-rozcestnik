@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
+
+.ty-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 0.7rem;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, #f6faf7 0%, #edf4ef 32%, #e7efe9 100%);
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  animation: ty-in 0.25s ease;
+}
+
+@keyframes ty-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ty-illustration {
+  width: min(70vw, 230px);
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(39, 86, 124, 0.16));
+}
+
+.ty-badge {
+  margin: 0;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #355247;
+  background: #d9ebdf;
+  font-family: inherit;
+}
+
+.ty-overlay h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 1.95rem);
+  color: #2f4a3f;
+  font-family: inherit;
+}
+
+.ty-overlay p {
+  margin: 0;
+  max-width: 32ch;
+  color: #5f786c;
+  font-family: inherit;
+}
