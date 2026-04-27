@@ -201,17 +201,6 @@ export default function CenikPage() {
   const orderColor  = orderItem  ? (CAT_COLOR[orderItem.category]  ?? '#5b4fa0') : '#5b4fa0'
   const pickerColor = pickerItem ? (CAT_COLOR[pickerItem.category] ?? '#5B7A6A') : '#5B7A6A'
 
-  // ── Shared sub-components ───────────────────────────────────────────────────
-
-  const PickerBlock = ({ label, children }: { label: string; children: React.ReactNode }) => (
-    <Box sx={{ border: `1px solid ${theme.blockBdr}`, borderRadius: '14px', background: theme.stepperBg, p: 1.75, display: 'grid', gap: 1.25 }}>
-      <Typography sx={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.07em', textTransform: 'uppercase', color: theme.labelColor }}>
-        {label}
-      </Typography>
-      {children}
-    </Box>
-  )
-
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
@@ -361,40 +350,5 @@ export default function CenikPage() {
       {ordered && <ThankYouOverlay accentColor={orderedColor} onDismiss={() => setOrdered(false)} />}
       <NavPanel open={navOpen} onClose={() => setNavOpen(false)} />
     </Box>
-  )
-}
-
-// ── Small shared helpers ────────────────────────────────────────────────────────
-
-function NoteField({ value, onChange, blockBdr, accentColor }: { value: string; onChange: (v: string) => void; blockBdr: string; accentColor: string }) {
-  return (
-    <TextField multiline rows={2} fullWidth placeholder="Nepovinná poznámka k objednávce…"
-      value={value} onChange={e => onChange(e.target.value)} variant="outlined" size="small"
-      sx={{
-        '& .MuiOutlinedInput-root': {
-          borderRadius: '8px', background: '#fff', fontSize: '0.85rem',
-          '& fieldset': { borderColor: blockBdr },
-          '&:hover fieldset': { borderColor: accentColor },
-          '&.Mui-focused fieldset': { borderColor: accentColor },
-        },
-      }}
-    />
-  )
-}
-
-function DialogActions({ onCancel, onConfirm, confirmLabel, confirmDisabled, confirmColor, cancelBg, cancelColor, blockBdr }: {
-  onCancel: () => void; onConfirm: () => void; confirmLabel: string
-  confirmDisabled?: boolean; confirmColor: string; cancelBg: string; cancelColor: string; blockBdr: string
-}) {
-  return (
-    <Stack direction="row" justifyContent="flex-end" spacing={1.5}>
-      <Button onClick={onCancel} sx={{ borderRadius: '999px', fontWeight: 700, background: cancelBg, color: cancelColor, px: 3, py: 1, '&:hover': { background: blockBdr } }}>
-        Zrušit
-      </Button>
-      <Button variant="contained" onClick={onConfirm} disabled={confirmDisabled}
-        sx={{ borderRadius: '999px', fontWeight: 700, background: confirmColor, color: '#fff', px: 3, py: 1, '&:hover': { background: confirmColor, filter: 'brightness(1.1)' }, '&.Mui-disabled': { opacity: 0.45 } }}>
-        {confirmLabel}
-      </Button>
-    </Stack>
   )
 }

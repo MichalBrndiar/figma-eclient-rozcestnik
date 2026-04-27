@@ -21,21 +21,24 @@ function navigate(href: string, onClose: () => void) {
 
 // ── Per-effect animation configs ───────────────────────────────────────────────
 
+const EASE_STANDARD = [0.22, 1, 0.36, 1] as const
+const EASE_SHARP = [0.55, 0, 1, 0.45] as const
+
 const EFFECTS = [
   // 0: Radial burst – circle z hamburgeru
   {
     panel: {
       initial: { clipPath: 'circle(0px at 36px 30px)' },
       animate: { clipPath: 'circle(200% at 36px 30px)' },
-      exit:    { clipPath: 'circle(0px at 36px 30px)' as string | object },
-      transition:     { duration: 0.78, ease: [0.22, 1, 0.36, 1] as number[] },
-      exitTransition: { duration: 0.4,  ease: [0.55, 0, 1, 0.45] as number[] },
+      exit:    { clipPath: 'circle(0px at 36px 30px)' },
+      transition:     { duration: 0.78, ease: EASE_STANDARD },
+      exitTransition: { duration: 0.4,  ease: EASE_SHARP },
       extraStyle: {},
     },
     items: (i: number) => ({
       initial: { opacity: 0, x: -20 },
       animate: { opacity: 1, x: 0 },
-      transition: { delay: 0.28 + i * 0.07, duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+      transition: { delay: 0.28 + i * 0.07, duration: 0.38, ease: EASE_STANDARD },
     }),
   },
 
@@ -45,14 +48,14 @@ const EFFECTS = [
       initial: { rotateY: -90, opacity: 0.6 },
       animate: { rotateY: 0,   opacity: 1 },
       exit:    { rotateY: -90, opacity: 0.6 },
-      transition:     { duration: 0.7, ease: [0.22, 1, 0.36, 1] as number[] },
-      exitTransition: { duration: 0.35, ease: [0.55, 0, 1, 0.45] as number[] },
+      transition:     { duration: 0.7, ease: EASE_STANDARD },
+      exitTransition: { duration: 0.35, ease: EASE_SHARP },
       extraStyle: { transformOrigin: 'left center', transformPerspective: 900 },
     },
     items: (i: number) => ({
       initial: { opacity: 0, y: -18, rotateX: 30 },
       animate: { opacity: 1, y: 0,   rotateX: 0 },
-      transition: { delay: 0.22 + i * 0.065, duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+      transition: { delay: 0.22 + i * 0.065, duration: 0.42, ease: EASE_STANDARD },
     }),
   },
 
@@ -62,14 +65,14 @@ const EFFECTS = [
       initial: { scaleX: 0, opacity: 0.4 },
       animate: { scaleX: 1, opacity: 1 },
       exit:    { scaleX: 0, opacity: 0 },
-      transition:     { type: 'spring', damping: 11, stiffness: 110 } as object,
-      exitTransition: { duration: 0.26, ease: [0.55, 0, 1, 0.45] as number[] },
+      transition:     { type: 'spring' as const, damping: 11, stiffness: 110 },
+      exitTransition: { duration: 0.26, ease: EASE_SHARP },
       extraStyle: { transformOrigin: 'left center' },
     },
     items: (i: number) => ({
       initial: { opacity: 0, scale: 0.78 },
       animate: { opacity: 1, scale: 1 },
-      transition: { type: 'spring', delay: 0.1 + i * 0.06, damping: 14, stiffness: 260 },
+      transition: { type: 'spring' as const, delay: 0.1 + i * 0.06, damping: 14, stiffness: 260 },
     }),
   },
 ]
