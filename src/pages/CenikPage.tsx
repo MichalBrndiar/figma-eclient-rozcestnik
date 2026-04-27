@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react'
 import {
   AppBar, Box, Chip, Container, IconButton,
-  Stack, Toolbar, Typography, Card, Grid, Button,
+  Stack, Toolbar, Tooltip, Typography, Card, Grid, Button,
 } from '@mui/material'
 import { Menu as MenuIcon } from '@mui/icons-material'
 import NavPanel from '../NavPanel'
+import { NAV_APPS } from '../navApps'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
 import { getLayout } from '../useLayout'
@@ -218,15 +219,46 @@ export default function CenikPage() {
       {/* AppBar */}
       <AppBar position="sticky" elevation={0} sx={{ background: theme.appBarBg, backdropFilter: 'blur(14px)', borderBottom: `1px solid ${theme.appBarBdr}` }}>
         <Toolbar sx={{ gap: 1 }}>
-          <IconButton edge="start" onClick={() => setNavOpen(true)} sx={{ color: '#1C1B1F' }}>
+          {/* Hamburger – jen na mobilu */}
+          <IconButton edge="start" onClick={() => setNavOpen(true)} sx={{ color: '#1C1B1F', display: { xs: 'flex', sm: 'none' } }}>
             <MenuIcon />
           </IconButton>
+
           <Box sx={{ width: 36, height: 36, borderRadius: '12px', background: theme.logoBg, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 2px 8px ${theme.logoShadow}` }}>
             <Icon icon="mdi:tag-multiple" style={{ fontSize: 20, color: '#fff' }} />
           </Box>
           <Typography variant="h6" sx={{ color: '#1C1B1F', flexGrow: 1, letterSpacing: '-0.3px' }}>
             Ceníkové položky
           </Typography>
+
+          {/* Desktop nav ikonky */}
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 0.5 }}>
+            {NAV_APPS.map(app => (
+              <Tooltip key={app.href} title={app.title} arrow placement="bottom">
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    const url = new URL(window.location.href)
+                    url.pathname = app.href.startsWith('/') ? app.href : '/'
+                    url.hash = app.href.startsWith('#') ? app.href : ''
+                    window.history.pushState(null, '', url.toString())
+                    window.dispatchEvent(new PopStateEvent('popstate'))
+                  }}
+                  sx={{
+                    width: 34, height: 34, borderRadius: '10px',
+                    background: app.gradient,
+                    transition: 'transform 0.15s, box-shadow 0.15s',
+                    '&:hover': {
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                    },
+                  }}
+                >
+                  <app.Icon sx={{ fontSize: 17, color: '#fff' }} />
+                </IconButton>
+              </Tooltip>
+            ))}
+          </Box>
         </Toolbar>
       </AppBar>
 
