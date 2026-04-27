@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Box, Typography, IconButton } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Home } from '@mui/icons-material'
 import { NAV_APPS } from './navApps'
 
@@ -41,10 +41,13 @@ export default function NavPanel({ open, onClose }: NavPanelProps) {
           {/* Panel */}
           <motion.div
             key="panel"
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+            variants={{
+              hidden:   { clipPath: 'circle(0px at 36px 30px)' },
+              visible:  { clipPath: 'circle(200% at 36px 30px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            initial="hidden"
+            animate="visible"
+            exit={{ clipPath: 'circle(0px at 36px 30px)', transition: { duration: 0.32, ease: [0.55, 0, 1, 0.45] } }}
             style={{
               position: 'fixed', top: 0, left: 0, bottom: 0,
               width: 'min(320px, 88vw)',
@@ -58,17 +61,23 @@ export default function NavPanel({ open, onClose }: NavPanelProps) {
             }}
           >
             {/* Header */}
-            <Box sx={{ px: 2, pt: 3.5, pb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-              <IconButton
-                onClick={() => navigate('/', onClose)}
-                sx={{
-                  background: 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
-                  color: '#fff', width: 40, height: 40, borderRadius: '12px',
-                  '&:hover': { background: 'linear-gradient(135deg, #6a58b8 0%, #8c7fcc 100%)' },
-                }}
-              >
+            <Box
+              onClick={() => navigate('/', onClose)}
+              sx={{
+                px: 2, pt: 3.5, pb: 2, display: 'flex', alignItems: 'center', gap: 1,
+                cursor: 'pointer', borderRadius: '0 0 16px 0',
+                transition: 'background 0.15s',
+                '&:hover': { background: 'rgba(123,104,200,0.07)' },
+                '&:active': { background: 'rgba(123,104,200,0.14)' },
+              }}
+            >
+              <Box sx={{
+                background: 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
+                color: '#fff', width: 40, height: 40, borderRadius: '12px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }}>
                 <Home sx={{ fontSize: 20 }} />
-              </IconButton>
+              </Box>
               <Box>
                 <Typography sx={{ fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(28,27,31,0.38)', lineHeight: 1 }}>
                   eClient
@@ -84,9 +93,9 @@ export default function NavPanel({ open, onClose }: NavPanelProps) {
               {NAV_APPS.map((app, i) => (
                 <motion.div
                   key={app.href}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.04 + i * 0.045, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, y: 12, scale: 0.93 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.18 + i * 0.055, duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Box
                     onClick={() => navigate(app.href, onClose)}
