@@ -3,7 +3,6 @@ import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
 import LayoutBento from './layouts/LayoutBento'
 import LayoutIllustrated from './layouts/LayoutIllustrated'
 import LayoutMono from './layouts/LayoutMono'
-import BottomNav from './BottomNav'
 import LayoutSwitcher from './LayoutSwitcher'
 import { getLayout, type LayoutVariant } from './useLayout'
 import CenikPage from './pages/CenikPage'
@@ -56,11 +55,10 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4 }, px: { xs: 2, sm: 3 }, pb: { xs: '96px', md: 5 } }}>
+      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4 }, px: { xs: 2, sm: 3 }, pb: { xs: 3, md: 5 } }}>
         {layout === 'illustrated' ? <LayoutIllustrated /> : layout === 'mono' ? <LayoutMono /> : <LayoutBento />}
       </Container>
 
-      <BottomNav />
       <LayoutSwitcher />
     </Box>
   )

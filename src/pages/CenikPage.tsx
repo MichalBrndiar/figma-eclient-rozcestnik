@@ -3,7 +3,7 @@ import {
   AppBar, Box, Chip, Container, IconButton,
   Stack, Toolbar, Tooltip, Typography, Card, Grid, Button,
 } from '@mui/material'
-import { Menu as MenuIcon } from '@mui/icons-material'
+import { HomeRounded, Menu as MenuIcon } from '@mui/icons-material'
 import NavPanel from '../NavPanel'
 import { NAV_APPS } from '../navApps'
 import { Icon } from '@iconify/react'
@@ -140,6 +140,14 @@ export default function CenikPage() {
   const theme     = isMono ? THEME.mono : THEME.default
   const CAT_COLOR = isMono ? CAT_COLOR_MONO : CAT_COLOR_DEFAULT
 
+  const goHome = () => {
+    const url = new URL(window.location.href)
+    url.pathname = '/'
+    url.hash = ''
+    window.history.pushState(null, '', url.toString())
+    window.dispatchEvent(new PopStateEvent('popstate'))
+  }
+
   const visibleItems = useMemo(() => {
     if (category === 'Vše') return ITEMS
     return ITEMS.filter(i => i.category === category)
@@ -222,6 +230,25 @@ export default function CenikPage() {
 
           {/* Desktop nav ikonky */}
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 0.5 }}>
+            <Tooltip title="Zpět na rozcestník" arrow placement="bottom">
+              <IconButton
+                size="small"
+                onClick={goHome}
+                sx={{
+                  width: 34, height: 34, borderRadius: '10px',
+                  background: isMono
+                    ? 'linear-gradient(135deg, #1484A8 0%, #2CB4D2 100%)'
+                    : 'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
+                  transition: 'transform 0.15s, box-shadow 0.15s',
+                  '&:hover': {
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  },
+                }}
+              >
+                <HomeRounded sx={{ fontSize: 17, color: '#fff' }} />
+              </IconButton>
+            </Tooltip>
             {NAV_APPS.map(app => (
               <Tooltip key={app.href} title={app.title} arrow placement="bottom">
                 <IconButton
