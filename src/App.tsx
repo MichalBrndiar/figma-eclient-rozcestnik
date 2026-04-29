@@ -6,9 +6,15 @@ import LayoutMono from './layouts/LayoutMono'
 import LayoutSwitcher from './LayoutSwitcher'
 import { getLayout, type LayoutVariant } from './useLayout'
 import CenikPage from './pages/CenikPage'
+import ClientCardPage from './pages/ClientCardPage'
 
-type Page = 'hub' | 'cenik'
-const getPage = (): Page => (window.location.pathname.startsWith('/cenik') ? 'cenik' : 'hub')
+type Page = 'hub' | 'cenik' | 'client-card'
+const getPage = (): Page => {
+  const p = window.location.pathname
+  if (p.startsWith('/cenik'))       return 'cenik'
+  if (p.startsWith('/client-card')) return 'client-card'
+  return 'hub'
+}
 
 export default function App() {
   const [layout, setLayout] = useState<LayoutVariant>(getLayout)
@@ -20,7 +26,8 @@ export default function App() {
     return () => window.removeEventListener('popstate', handler)
   }, [])
 
-  if (page === 'cenik') return <CenikPage />
+  if (page === 'cenik')   return <CenikPage />
+  if (page === 'client-card') return <ClientCardPage />
 
   const isMono = layout === 'mono'
   const appBarBg   = isMono ? 'rgba(216,242,248,0.88)' : 'rgba(243,238,249,0.88)'

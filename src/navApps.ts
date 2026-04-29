@@ -38,7 +38,7 @@ export const NAV_APPS: NavApp[] = [
     Icon:         Badge,
     gradient:     'linear-gradient(135deg, #7B68C8 0%, #9D8FDC 100%)',
     gradientMono: MONO.deepest,
-    href:         '#prukazka',
+    href:         '/client-card',
     variant:      'featured',
     size:         { xs: 12, sm: 7 },
   },
