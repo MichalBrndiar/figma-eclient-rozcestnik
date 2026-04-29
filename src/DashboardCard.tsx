@@ -10,11 +10,17 @@ import NotificationsRounded from '@mui/icons-material/NotificationsRounded'
 import { getLayout } from './useLayout'
 import { CLIENT } from './client'
 
-function getGreeting() {
+const GREETINGS = [
+  { text: 'Dobré ráno',      Icon: WbSunnyRounded,   color: '#FDE68A' },
+  { text: 'Dobré odpoledne', Icon: Brightness5Rounded, color: '#FED7AA' },
+  { text: 'Dobrý večer',     Icon: NightsStayRounded,  color: '#A5F3FC' },
+]
+
+function getGreetingIndex() {
   const h = new Date().getHours()
-  if (h >= 5 && h < 12) return { text: 'Dobré ráno', Icon: WbSunnyRounded, color: '#FDE68A' }
-  if (h >= 12 && h < 18) return { text: 'Dobré odpoledne', Icon: Brightness5Rounded, color: '#FED7AA' }
-  return { text: 'Dobrý večer', Icon: NightsStayRounded, color: '#A5F3FC' }
+  if (h >= 5 && h < 12) return 0
+  if (h >= 12 && h < 18) return 1
+  return 2
 }
 
 function formatDate() {
@@ -54,7 +60,8 @@ export default function DashboardCard() {
     return () => window.removeEventListener('popstate', h)
   }, [])
 
-  const { text, Icon, color } = getGreeting()
+  const [greetingIdx, setGreetingIdx] = useState(getGreetingIndex)
+  const { text, Icon, color } = GREETINGS[greetingIdx]
   const theme = layout === 'mono' ? THEMES.mono : THEMES.default
 
   return (
@@ -78,7 +85,10 @@ export default function DashboardCard() {
       {/* pozdrav řádek */}
       <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible">
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box
+            onClick={() => setGreetingIdx(i => (i + 1) % GREETINGS.length)}
+            sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', userSelect: 'none' }}
+          >
             <Icon sx={{ fontSize: 20, color }} />
             <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.75)', fontWeight: 600, letterSpacing: 0.3 }}>
               {text}
