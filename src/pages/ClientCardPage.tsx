@@ -225,26 +225,7 @@ export default function ClientCardPage() {
                   {CLIENT.name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.75)', fontWeight: 500 }}>
-                  {CLIENT.room}
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ px: 2.5, py: 1.5, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-              <Box>
-                <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  Příjezd
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                  {fmtStayDate(CLIENT.stayFrom)}
-                </Typography>
-              </Box>
-              <Box sx={{ width: '1px', background: 'divider', alignSelf: 'stretch' }} />
-              <Box>
-                <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  Odjezd
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                  {fmtStayDate(CLIENT.stayTo)}
+                  {fmtStayDate(CLIENT.stayFrom)} – {fmtStayDate(CLIENT.stayTo)}
                 </Typography>
               </Box>
             </Box>
@@ -318,9 +299,9 @@ export default function ClientCardPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: gi * 0.05 + ii * 0.04, duration: 0.25 }}
                           >
-                            <Card sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2, boxShadow: t.cardShadow }}>
-                              <Box sx={{ width: 48, height: 48, flexShrink: 0, borderRadius: '16px', background: `${color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Icon icon={meta.icon} style={{ fontSize: 26, color }} />
+                            <Card sx={{ px: 2, py: 1.25, display: 'flex', alignItems: 'center', gap: 2, boxShadow: t.cardShadow }}>
+                              <Box sx={{ width: 40, height: 40, flexShrink: 0, borderRadius: '14px', background: `${color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Icon icon={meta.icon} style={{ fontSize: 22, color }} />
                               </Box>
                               <Box sx={{ flex: 1, minWidth: 0 }}>
                                 <Typography variant="subtitle2" sx={{ fontWeight: 700, lineHeight: 1.2 }} noWrap>
