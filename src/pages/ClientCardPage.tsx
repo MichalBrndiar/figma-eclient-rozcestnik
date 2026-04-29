@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import NavPanel from '../NavPanel'
 import { NAV_APPS } from '../navApps'
 import { getLayout } from '../useLayout'
+import { CLIENT } from '../client'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -23,12 +24,6 @@ interface Appointment {
   type: string
 }
 
-const CLIENT = {
-  name:     'Zikmund Dubnový',
-  room:     'Pokoj 214',
-  stayFrom: '2026-04-29',
-  stayTo:   '2026-05-20',
-}
 
 const APPOINTMENTS: Appointment[] = [
   { isoDate: '2026-04-30', name: 'Masáž čokoládová', location: 'Masérna 1 dveře K205',    time: '12:15', type: 'masaz'     },

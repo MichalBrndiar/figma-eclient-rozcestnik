@@ -8,6 +8,7 @@ import RestaurantRounded from '@mui/icons-material/RestaurantRounded'
 import SpaRounded from '@mui/icons-material/SpaRounded'
 import NotificationsRounded from '@mui/icons-material/NotificationsRounded'
 import { getLayout } from './useLayout'
+import { CLIENT } from './client'
 
 function getGreeting() {
   const h = new Date().getHours()
@@ -93,7 +94,7 @@ export default function DashboardCard() {
       {/* jméno + datum */}
       <motion.div custom={0.08} variants={fadeUp} initial="hidden" animate="visible">
         <Typography variant="h5" sx={{ color: '#fff', fontWeight: 800, mb: 0.25, letterSpacing: '-0.3px' }}>
-          Jan Novák
+          {CLIENT.name}
         </Typography>
         <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500, mb: 2.5, textTransform: 'capitalize' }}>
           {formatDate()}
