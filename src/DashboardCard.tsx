@@ -2,7 +2,7 @@ import { Box, Chip, Typography } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import WbSunnyRounded from '@mui/icons-material/WbSunnyRounded'
-import Brightness3Rounded from '@mui/icons-material/Brightness3Rounded'
+import Brightness5Rounded from '@mui/icons-material/Brightness5Rounded'
 import NightsStayRounded from '@mui/icons-material/NightsStayRounded'
 import RestaurantRounded from '@mui/icons-material/RestaurantRounded'
 import SpaRounded from '@mui/icons-material/SpaRounded'
@@ -13,7 +13,7 @@ import { CLIENT } from './client'
 function getGreeting() {
   const h = new Date().getHours()
   if (h >= 5 && h < 12) return { text: 'Dobré ráno', Icon: WbSunnyRounded, color: '#FDE68A' }
-  if (h >= 12 && h < 18) return { text: 'Dobré odpoledne', Icon: Brightness3Rounded, color: '#FED7AA' }
+  if (h >= 12 && h < 18) return { text: 'Dobré odpoledne', Icon: Brightness5Rounded, color: '#FED7AA' }
   return { text: 'Dobrý večer', Icon: NightsStayRounded, color: '#A5F3FC' }
 }
 
