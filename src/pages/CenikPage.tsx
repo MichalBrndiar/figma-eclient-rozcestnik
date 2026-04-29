@@ -40,10 +40,15 @@ const ITEMS: Item[] = [
   { id: 'pivo',       name: 'Pivo (0,5 l)',         category: 'Nápoje',    price: 40,   icon: 'mdi:beer'             },
   { id: 'nutri',      name: 'Výživový doplněk',     category: 'Zdraví',    price: 180,  icon: 'mdi:nutrition'        },
   { id: 'zuby',       name: 'Zubní pasta',          category: 'Hygiena',   price: 75,   icon: 'mdi:tooth-outline'    },
-  { id: 'masaz-zad',    name: 'Masáž zad',        category: 'Procedury', price: 990,  icon: 'mdi:spa',          duration: '45 min' },
-  { id: 'rehabilitace', name: 'Rehabilitace',      category: 'Procedury', price: 1190, icon: 'mdi:medical-bag',  duration: '60 min' },
-  { id: 'manikura',     name: 'Manikúra',          category: 'Procedury', price: 450,  icon: 'mdi:hand-okay',    duration: '30 min' },
-  { id: 'pedikura',     name: 'Pedikúra',          category: 'Procedury', price: 550,  icon: 'mdi:shoe-print',   duration: '40 min' },
+  { id: 'masaz-zad',       name: 'Masáž zad',          category: 'Procedury', price: 990,  icon: 'mdi:spa',             duration: '45 min' },
+  { id: 'rehabilitace',    name: 'Rehabilitace',        category: 'Procedury', price: 1190, icon: 'mdi:medical-bag',     duration: '60 min' },
+  { id: 'manikura',        name: 'Manikúra',            category: 'Procedury', price: 450,  icon: 'mdi:hand-okay',       duration: '30 min' },
+  { id: 'pedikura',        name: 'Pedikúra',            category: 'Procedury', price: 550,  icon: 'mdi:shoe-print',      duration: '40 min' },
+  { id: 'masaz-cokolada',  name: 'Masáž čokoládová',   category: 'Procedury', price: 1290, icon: 'mdi:spa',             duration: '60 min' },
+  { id: 'vizity',          name: 'Vizity',              category: 'Procedury', price: 0,    icon: 'mdi:stethoscope',     duration: '15 min' },
+  { id: 'diadynamik',      name: 'Diadynamik 30 min',  category: 'Procedury', price: 490,  icon: 'mdi:lightning-bolt',  duration: '30 min' },
+  { id: 'laborator',       name: 'Laboratoř – odběr',  category: 'Procedury', price: 0,    icon: 'mdi:test-tube',       duration: '15 min' },
+  { id: 'vodolecba',       name: 'Vodoléčba',          category: 'Procedury', price: 590,  icon: 'mdi:pool',            duration: '30 min' },
 ]
 
 const CATEGORIES = ['Vše', 'Nápoje', 'Pochutiny', 'Hygiena', 'Zdraví', 'Zábava', 'Procedury']
